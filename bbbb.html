@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Confirmation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8eae6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #background-text {
+            position: absolute;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff7b5b;
+            left: 50%;
+            top: 10%;
+            transform: translateX(-50%);
+        }
+
+        #buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #yes-button {
+            background-color: #ff7b5b;
+            color: white;
+        }
+
+        #no-button {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        #result {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #message-box {
+            background-color: #ff7b5b;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(
+                50% 0%,
+                100% 35%,
+                75% 100%,
+                50% 75%,
+                25% 100%,
+                0% 35%
+            );
+        }
+    </style>
+</head>
+<body>
+
+    <div id="title">Love Confirmation</div>
+
+    <div id="background-text">I love you Sadeen</div>
+
+    <div id="question">Do you accept to be my girlfriend?</div>
+
+    <div id="buttons-container">
+        <button class="button" id="yes-button" onclick="handleButtonClick('yes')">Yes</button>
+        <button class="button" id="no-button" onclick="handleButtonClick('no')">No</button>
+    </div>
+
+    <div id="result">
+        <div id="message-box">
+            <p id="result-message"></p>
+            <div class="heart" style="top: -10px; left: 10px;"></div>
+            <div class="heart" style="top: 0; left: 40px;"></div>
+            <div class="heart" style="top: 10px; right: 10px;"></div>
+            <div class="heart" style="bottom: -10px; left: 30px;"></div>
+        </div>
+    </div>
+
+    <script>
+        function handleButtonClick(response) {
+            if (response === 'yes') {
+                showRomanticMessage();
+            } else if (response === 'no') {
+                moveNoButton();
+            }
+        }
+
+        function showRomanticMessage() {
+            const resultContainer = document.getElementById('result');
+            const messageContainer = document.getElementById('result-message');
+            const messageBox = document.getElementById('message-box');
+            
+            messageContainer.innerText = "I'm so so so happy that you accept. I love you and I'll always do for the rest of my life.";
+            resultContainer.style.display = 'block';
+            messageBox.style.display = 'block';
+        }
+
+        function moveNoButton() {
+            const button = document.getElementById('no-button');
+            const maxX = window.innerWidth - button.clientWidth;
+            const maxY = window.innerHeight - button.clientHeight;
+
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+
+            button.style.position = 'absolute';
+            button.style.left = newX + 'px';
+            button.style.top = newY + 'px';
+        }
+
+        // Function to create background text elements
+        function createBackgroundText() {
+            const texts = ["I love you Sadeen", "I love you Sadeen", "I love you Sadeen", "I love you Sadeen", "I love you Sadeen", "I love you Sadeen", "I love you Sadeen", "I love you Sadeen", "I love you Sadeen", "I love you Sadeen"];
+
+            texts.forEach((text, index) => {
+                const textElement = document.createElement('div');
+                textElement.className = 'background-text';
+                textElement.innerText = text;
+
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+
+                textElement.style.left = `${posX}px`;
+                textElement.style.top = `${posY}px`;
+
+                document.body.appendChild(textElement);
+            });
+        }
+
+        // Call the function to create background text elements
+        createBackgroundText();
+    </script>
+
+</body>
+</html>
